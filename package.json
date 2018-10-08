@@ -27,7 +27,7 @@
     "karma-jasmine": "1.1.1",
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
-    "karma-typescript": "3.0.12",
+    "karma-typescript": "^3.0.13",
     "lodash": "4.17.10",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
