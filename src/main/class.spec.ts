@@ -4,6 +4,12 @@ describe('class', () => {
     // Create a Musician class
     // Add a constructor that takes one param, the instrument.
     // Set this.instrument to the instrument passed in
+    class Musician {
+      instrument: String;
+      constructor(instrument: string) {
+        this.instrument = instrument;
+      }
+    }
 
     const musician = new Musician()
     const ringo = new Musician('drums')
@@ -15,6 +21,12 @@ describe('class', () => {
   it('constructor can have default param values', () => {
     // Create a Musician class with a constructor
     // Make your class default (using default params) the instrument to 'guitar'
+    class Musician {
+      public instrument: String;
+      constructor(public anInstrument: string = "guitar") {
+        this.instrument = anInstrument;
+      }
+    }
 
     const john = new Musician()
     const ringo = new Musician('drums')
@@ -26,6 +38,15 @@ describe('class', () => {
   it('can have instance methods', () => {
     // Create a Musician class, pass in the instrument to the constructor,
     // and add a play function to the class definition
+    class Musician {
+      instrument: String;
+      constructor(instrument: string) {
+        this.instrument = instrument;
+      }
+      public play() {
+        return "I'm playing drums"
+      }
+    }
 
     const musician = new Musician()
 
@@ -39,6 +60,23 @@ describe('class', () => {
     // create a static property instances (that will hold all created instances) and
     // create a static method create that encapsulates calling constructor
     //   and storing the reference (in instances array) and returns the instance
+    class Musician {
+      public instrument: String;
+      public static instances: Array<Musician> = [];
+      constructor(instrument: string) {
+        this.instrument = instrument;
+      }
+      public static create(instrument: string) {
+        let instance;
+        if (instrument) {
+          instance = new Musician(instrument);
+        } else {
+          instance = new Musician();
+        }
+        Musician.instances.push(instance);
+        return instance;
+      }
+    }
 
     expect(Musician.create).toBeDefined()
     expect(Musician.instances.length).toBe(0)
@@ -56,6 +94,22 @@ describe('class', () => {
     // Create a Musician class
     // Create a Rockman class that extends Musician
     // Add play method to Musician
+    class Musician {
+      instrument: String;
+      constructor(instrument: string) {
+        this.instrument = instrument;
+      }
+      public play() {
+        return "I'm playing guitar"
+      }
+    }
+
+    class Rockman extends Musician {
+      instrument: String;
+      constructor(instrument: string) {
+        super(instrument);
+      }
+    }
 
     const rockman = new Rockman()
 
@@ -67,6 +121,16 @@ describe('class', () => {
   it('can use property setters and getters', () => {
     // Create a Musician class, pass in the instrument to the constructor,
     // Add property getter for description
+    class Musician {
+      private _instrument: String;
+
+      constructor(instrument: string) {
+        this._instrument = instrument;
+      }
+      get description(): String {
+        return "this musician plays " + this._instrument;
+      }
+    }
 
     const guitarist = new Musician('guitar')
     const drummer = new Musician('drums')
@@ -81,6 +145,34 @@ describe('class', () => {
     // - it will return a string describing all the bands that this musician played in
     // Add property setter for band
     // - it will add this band to the list of musician's bands'. How to store them?
+    class Musician {
+      private _instrument: String;
+      private _band: String;
+      private _allbands: Array<String> = [];
+
+      constructor(instrument: string, band: string) {
+        this._instrument = instrument;
+      }
+      get allBands(): String {
+        let res = "this musician played in ";
+        for (let i = 0; i < this._allbands.length; i++) {
+          if (i === 0 && this._allbands.length === 1) {
+            res = res + this._allbands[i];
+          } else {
+            if (i + 1 === this._allbands.length) {
+              res = res + this._allbands[i];
+            } else {
+              res = res + this._allbands[i] + ", ";
+            };
+          };
+        };
+        return res;
+      };
+      set band(aband: String) {
+        this._band = aband;
+        this._allbands.push(this._band);
+      }
+    }
 
     const musician = new Musician()
 

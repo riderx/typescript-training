@@ -7,9 +7,9 @@
     "api": "hs data"
   },
   "devDependencies": {
-    "@types/jasmine": "2.8.6",
+    "@types/jasmine": "2.8.9",
     "@types/lodash": "^4.14.104",
-    "@types/node": "^9.6.6",
+    "@types/node": "^10.11.5",
     "@types/promise.prototype.finally": "2.0.2",
     "babel-core": "6.26.3",
     "babel-polyfill": "6.26.0",
@@ -17,21 +17,24 @@
     "babel-preset-es2016": "6.24.1",
     "babel-preset-es2017": "6.24.1",
     "http-server": "0.11.1",
-    "jasmine-core": "3.1.0",
-    "karma": "2.0.2",
+    "jasmine-core": "3.2.1",
+    "karma": "3.0.0",
     "karma-babel-preprocessor": "7.0.0",
     "karma-chrome-launcher": "2.2.0",
     "karma-es6-shim": "1.0.0",
     "karma-firefox-launcher": "1.1.0",
     "karma-ie-launcher": "1.0.0",
-    "karma-jasmine": "1.1.1",
+    "karma-jasmine": "1.1.2",
     "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.32",
-    "karma-typescript": "3.0.12",
-    "lodash": "4.17.10",
+    "karma-typescript": "3.0.13",
+    "lodash": "4.17.11",
     "redux": "^4.0.0",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
-    "typescript": "2.8.3"
+    "reselect": "^4.0.0",
+    "typescript": "3.1.1"
+  },
+  "dependencies": {
+    "jshint": "^2.9.5"
   }
 }
