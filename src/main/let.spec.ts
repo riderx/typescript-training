@@ -25,7 +25,7 @@ describe('let declarations', () => {
       // Change to `var` to `let`, so that b is scoped inside of the if-statement
       let b = 1;
     }
-    expect(() => noop(1)).toThrow()
+    expect(() => noop(b)).toThrow()
   })
 
   it('cannot redeclare using the same name', () => {
@@ -44,7 +44,7 @@ describe('let declarations', () => {
     // BLOCK STATEMENT
     {
       // Change to `let` declaration
-      var d = 2
+      let d = 2
     }
 
     expect(() => noop('d', d)).toThrow()
@@ -55,12 +55,13 @@ describe('let declarations', () => {
 
     // NESTED BLOCK STATEMENTS
     // let...
+    let message = 'John';
     expect(message).toBe('John')
     {
-      // let...
+      let message = 'Lennon';
       expect(message).toBe('Lennon')
       {
-        // let...
+        let message = 'died';
         expect(message).toBe('died')
       }
       expect(message).toBe('Lennon')

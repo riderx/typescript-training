@@ -11,7 +11,7 @@ describe('class', () => {
       }
     }
 
-    const musician = new Musician('')
+    const musician = new Musician()
     const ringo = new Musician('drums')
 
     expect(musician.instrument).toBeUndefined()
@@ -22,13 +22,13 @@ describe('class', () => {
     // Create a Musician class with a constructor
     // Make your class default (using default params) the instrument to 'guitar'
     class Musician {
-      instrument: String = 'guitar';
-      constructor(instrument: string) {
-        this.instrument = instrument;
+      public instrument: String;
+      constructor(public anInstrument: string = "guitar") {
+        this.instrument = anInstrument;
       }
     }
 
-    const john = new Musician('')
+    const john = new Musician()
     const ringo = new Musician('drums')
 
     expect(john.instrument).toBe('guitar')
@@ -48,7 +48,7 @@ describe('class', () => {
       }
     }
 
-    const musician = new Musician('')
+    const musician = new Musician()
 
     expect(musician.play).toBeDefined()
     // expect(Musician.play).toBeUndefined()
@@ -61,13 +61,18 @@ describe('class', () => {
     // create a static method create that encapsulates calling constructor
     //   and storing the reference (in instances array) and returns the instance
     class Musician {
-      instrument: String;
-      public static instances: Musician[];
+      public instrument: String;
+      public static instances: Array<Musician> = [];
       constructor(instrument: string) {
         this.instrument = instrument;
       }
       public static create(instrument: string) {
-        const instance = new Musician(instrument);
+        let instance;
+        if (instrument) {
+          instance = new Musician(instrument);
+        } else {
+          instance = new Musician();
+        }
         Musician.instances.push(instance);
         return instance;
       }
@@ -76,7 +81,7 @@ describe('class', () => {
     expect(Musician.create).toBeDefined()
     expect(Musician.instances.length).toBe(0)
 
-    const john = Musician.create('')
+    const john = Musician.create()
     // expect(john.create).toBeUndefined()
     expect(Musician.instances.length).toBe(1)
 
@@ -106,7 +111,7 @@ describe('class', () => {
       }
     }
 
-    const rockman = new Rockman('')
+    const rockman = new Rockman()
 
     expect(rockman instanceof Rockman).toBe(true)
     expect(rockman instanceof Musician).toBe(true)
@@ -123,7 +128,7 @@ describe('class', () => {
         this._instrument = instrument;
       }
       get description(): String {
-        return "this musician plays" + this._instrument;
+        return "this musician plays " + this._instrument;
       }
     }
 
@@ -143,26 +148,33 @@ describe('class', () => {
     class Musician {
       private _instrument: String;
       private _band: String;
-      private _allbands: Array<String>;
+      private _allbands: Array<String> = [];
 
       constructor(instrument: string, band: string) {
         this._instrument = instrument;
       }
       get allBands(): String {
-        return "this musician played in" + this._allbands;
-      }
+        let res = "this musician played in ";
+        for (let i = 0; i < this._allbands.length; i++) {
+          if (i === 0 && this._allbands.length === 1) {
+            res = res + this._allbands[i];
+          } else {
+            if (i + 1 === this._allbands.length) {
+              res = res + this._allbands[i];
+            } else {
+              res = res + this._allbands[i] + ", ";
+            };
+          };
+        };
+        return res;
+      };
       set band(aband: String) {
         this._band = aband;
-        if (this._allbands.length != 0) {
-          this._allbands.push(this._band + ", ");
-        } else {
-          this._allbands.push(this._band);
-        }
-
+        this._allbands.push(this._band);
       }
     }
 
-    const musician = new Musician('', '')
+    const musician = new Musician()
 
     musician.band = 'ABBA'
     expect(musician.allBands).toBe('this musician played in ABBA')
