@@ -1,7 +1,6 @@
 # typescript-training
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/stephwildcodes
-/typescript-training.svg)](https://greenkeeper.io/)
+[![Greenkeeper badge](https://badges.greenkeeper.io/stephwildcode/typescript-training.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/stephwildcode/typescript-training.svg?branch=exercises-step)](https://travis-ci.org/stephwildcode/typescript-training)
 
 ## install
